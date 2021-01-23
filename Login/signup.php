@@ -1,51 +1,58 @@
 <?php
 
-	// $userpw = password_hash($_POST['password'], PASSWORD_DEFAULT);
-  $userpw = password_hash($_POST['password'], PASSWORD_DEFAULT);
-	$username = $_POST['nickname'];
-  $user_email = $_POST['email'];
-  $phone = $_POST['phone'];
+//DB의 정보를 가져옵니다. 
+require '/mnt/c/Users/82104/workplace/Data/db_user_info.php';
+ 
+ header('Content-Type: application/json; charset=UTF-8');
+ 
+  // 컨텐츠 타입이 JSON 인지 확인한다
+  if(!in_array('application/json',explode(';',$_SERVER['CONTENT_TYPE']))){
+  echo json_encode(array('result_code' => '400'));
+  exit;
+  
+  }else{
+  
+  $__rawBody = file_get_contents("php://input"); // 본문을 불러옴
+  // $__getData = array(json_decode($__rawBody)); // 데이터를 변수에 넣고
+
+  $postData = json_decode($__rawBody, true);
+  // echo var_dump($postData);
+  // exit;
+
+  // echo var_dump($postData);
+  // exit;
+
+  $user_id = $postData['user_id'];
+  $user_passwd = $postData['user_pw'];
+  $user_name = $postData['user_name'];
 
 
+  // 비밀번호를 암호화 합니다
+  $encrypted_passwd = password_hash($user_passwd, PASSWORD_DEFAULT);
   
-  $conn = mysqli_connect("localhost", "mysql_user", '1q2w3e4r');
-  mysqli_select_db($conn, "shopdatabase");
-  $query = "select * from user where email='$email'";
-  // echo var_dump(mysqli_select_db($conn, "shopdatabase"));
   
-  $result = $conn->query($query);
-  $row=mysqli_fetch_assoc($result);
-  
-    if(mysqli_num_rows($result)==1){
-      echo ("<script>alert('아이디가 중복됩니다.');history.back();</script>");
+  // DB에서 입력받은 회원정보를 조회합니다.
+  $query_signup_check ="INSERT INTO user (email,user_pw,username,create_time)
+  VALUES(
+  '".$user_id."',
+  '".$encrypted_passwd."',
+  '".$user_name."',
+  now())";
 
-    }else if($_POST['password']!==$_POST['chpassword']){
-      echo ("<script>alert('비밀번호가 일치하지 않습니다.');history.back();</script>");
-    }else
-    {
-    $sql ="INSERT INTO user (email,pw,name,Adr,Adr2,Adr3,ph,agr)
-    VALUES(
-    '".$_POST['email']."',
-    '".$_POST['password']."',
-    '".$_POST['nickname']."',
-    '".$adr1."',
-    '".$adr2."',
-    '".$adr3."',
-    '".$_POST['phone']."',
-    0)";
+  //db에 쿼리문 대입
   
-    // echo '\n';
-    $conn = mysqli_connect("localhost", "user", '1q2w3e4R@@');
-    mysqli_select_db($conn, "shopdatabase");
-    $result = mysqli_query($conn, $sql);
-    
-    echo $sql;
-
-    echo var_dump($result);
-    
-    
-    // echo ("<script>alert('회원가입이 완료되었습니다.');</script>");
-    
-    // header('Location: ./login.html');
+  //DB에 연결합니다.
+  $conn = mysqli_connect($db_address, $db_userid, $db_userpw);
+  mysqli_select_db($conn, $database);
+  $result = $conn->query($query_signup_check);
+  
+  if($result){
+    echo json_encode(array('result_code' => '200','result_check' => 'OK'));
+    exit;
+  }else{
+    echo json_encode(array('result_code' => '200','result_check' => 'NO','$query_signup_check' => $query_signup_check));
+    exit;
   }
+
+}
 ?>

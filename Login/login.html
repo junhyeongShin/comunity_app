@@ -17,29 +17,30 @@
     <title>로그인</title>
     
   </head>
-  <!-- js사용 -->
-  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+  <!-- js사용 -->
+  <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     
   <script>
     function sendLogin() {
+      console.log("$('#user_id').val() : "+$('#user_id').val());
       $.ajax({
         //데이터를 넘길 주소
-        url: 'login_data_check.php',
+        url: './login_data_check.php',
         //데이터를 어떤 방법으로 넘길지 설정
         type: 'POST',
         //넘길 데이터
         data: {
-            'user_id' : $('#Login_input_id').val(),
-            'user_passwd' : $('#Login_input_pw').val()
+            'user_id' : $('#user_id').val(),
+            'user_passwd' : $('#user_pw').val()
         },
         //데이터를 성공적으로 받았을 때
-        success : function (data) {
-            if(data.check == 'success'){
+        success : function(response){
+          if(response == 'success'){
                 alert('성공');
             }
             else{
@@ -51,6 +52,7 @@
             alert(err);
         }
       });
+      console.log("sendLogin : end");
     }
 
     // 1. 아이디 저장 체크박스 true 일때 
@@ -84,7 +86,7 @@
        var exdate = new Date();
        exdate.setDate(exdate.getDate() + days);
        var cookie_value = escape(value) + ((days==null) ? "" : "; expires=" + exdate.toGMTString());
-       document.cookie = cookieName + "=" + cookie_value;
+       document.cookie = cookie_name + "=" + cookie_value;
       }
 
       function delete_cookie(cookie_name){
@@ -116,7 +118,7 @@
 			<h2 class="card-title text-center" style="color:#ffffff;">환영합니다!!!</h2>
 		</div>
 		<div class="card-body">
-      <form class="form-signin" method="POST" onSubmit="logincall();return false">
+      <form class="form-signin" method="POST" onSubmit="sendLogin(); return false">
         <h5 class="form-signin-heading" style="color:#ffffff;">로그인 정보를 입력하세요.</h5>
         <label for="inputEmail" class="sr-only" >Your ID</label>
         <input type="text" class="form-control" placeholder="Your ID" id="user_id"  style="color:#000000;" required autofocus><BR>
@@ -127,7 +129,7 @@
             <input type="checkbox" value="remember-me" id="id_save_check"> <c style="color:#ffffff;">ID 기억하기</c>
           </label>
         </div>
-        <button id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="submit" onclick="sendLogin()" style="color:#ffffff;">로 그 인</button>
+        <button id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="submit" style="color:#ffffff;">로 그 인</button>
       </form>
       <br>
       <div>

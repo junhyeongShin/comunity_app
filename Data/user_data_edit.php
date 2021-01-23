@@ -1,7 +1,7 @@
 <?php
 
 //DB의 정보를 가져옵니다. 
-require dirname(__FILE__,2).'/Data/db_user_info.php';
+require '/mnt/c/Users/82104/workplace/Data/db_user_info.php';
  
  header('Content-Type: application/json; charset=UTF-8');
  
@@ -38,24 +38,38 @@ require dirname(__FILE__,2).'/Data/db_user_info.php';
   $result = $conn->query($query_user_check);
   $row=mysqli_fetch_assoc($result);  
 
+  //암호화된 pw 체크
   if(password_verify($user_passwd, $row['user_pw'])){
     $password_check = 'OK';
   }
 
+  //잘못된 암호
   if(!isset($row['user_pw'])){
     echo json_encode(array('result_code' => '200','result_check' => 'E_pw'));
   }else{
 
+    //인증에 성공했을시 업데이트
   if(mysqli_num_rows($result)==1 & $password_check==='OK'){
+
+    $user_name = $postData['username'];
+    $user_passwd_new = $postData['user_pw_new'];
+    $img_profile = $postData['img_profile'];
+
+    $sql_update =" UPDATE user SET username,img_profile,user_pw = '$user_name','$img_profile','$user_passwd_new' WHERE email = '$user_id' ";
+
+    $result_upadate = $conn->query($sql_update);
+    
+    $row_update=mysqli_fetch_assoc($result_upadate);  
     
 
-    //로그인 성공 세션 시작, 성공 반환.
-    session_start();
-    $_SESSION['userid'] = $user_id;
-    // echo 'success';
-    // header('localhost/home/index.html');
 
-    echo json_encode(array('result_code' => '200','result_check' => 'OK'));
+    if(!isset($result_upadate)){
+      echo json_encode(array('result_code' => '200','result_check' => 'OK'));
+      exit;
+    }else{
+      echo json_encode(array('result_code' => '500','result_check' => 'E_server'));
+      exit;
+    }
 
   
     }else if(mysqli_num_rows($result)==0){
