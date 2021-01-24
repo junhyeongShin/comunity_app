@@ -1,14 +1,20 @@
 <?php
 
-include dirname(__FILE__)'';
+// include dirname(__FILE__,1)'';
 
-$target_path = dirname(__FILE__).'.';
+require dirname(__FILE__,2).'/db_user_info.php';
+// echo var_dump(dirname(__FILE__,2));
 
+$target_path = dirname(__FILE__).'/';
+// echo var_dump($target_path);
 
+// echo "<br>";
 
 // 파일 이상없는지 확인
 if (isset($_FILES['image']['name'])) {
     $target_path = $target_path . basename($_FILES['image']['name']);
+
+    // echo var_dump($target_path);
 
     try {
 
@@ -19,8 +25,20 @@ if (isset($_FILES['image']['name'])) {
 
         }
 
-        // 업로드 성공시
-        echo json_encode(array('result_code'=>'200', 'result_check'=>'OK'));
+        $img_path = $target_path.$_FILES['image']['name'];
+
+        //DB에 img 업로드
+        $query_img_upload ="INSERT INTO image (img_path) VALUES( '".$img_path."' )";
+
+        $conn = mysqli_connect($db_address, $db_userid, $db_userpw);
+        mysqli_select_db($conn, $database);
+        $result = $conn->query($query_img_upload);
+
+
+                        
+                // 업로드 성공시
+        echo json_encode(array('result_code'=>'200', 'result_check'=>'OK', 'result_query'=>$query_img_upload ));
+
 
     } catch (Exception $e) {
 
