@@ -2,7 +2,7 @@
 $database = 'db_us';
 $db_userid = 'mysql_user';
 $db_userpw = '1q2w3e4r!!';
-$db_address = 'localhost';
+$db_address = '13.125.205.208';
 
 function get_database(){
   return $database;

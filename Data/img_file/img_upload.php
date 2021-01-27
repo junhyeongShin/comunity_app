@@ -25,7 +25,7 @@ if (isset($_FILES['image']['name'])) {
 
         }
 
-        $img_path = $target_path.$_FILES['image']['name'];
+        $img_path = $_FILES['image']['name'];
 
         //DB에 img 업로드
         $query_img_upload ="INSERT INTO image (img_path) VALUES( '".$img_path."' )";
@@ -34,10 +34,16 @@ if (isset($_FILES['image']['name'])) {
         mysqli_select_db($conn, $database);
         $result = $conn->query($query_img_upload);
 
+        //DB 인덱스 번호 리턴
+        $query_img_index ="SELECT MAX(id) FROM image";
+
+        $result_img_index = $conn ->query($query_img_index);
+
+        $row_img_index=mysqli_fetch_assoc($result_img_index);
 
                         
-                // 업로드 성공시
-        echo json_encode(array('result_code'=>'200', 'result_check'=>'OK', 'result_query'=>$query_img_upload ));
+        // 업로드 성공시
+        echo json_encode(array('result_code'=>'200', 'result_check'=>'OK', 'result_index'=>$row_img_index ));
 
 
     } catch (Exception $e) {
