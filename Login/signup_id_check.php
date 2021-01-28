@@ -5,7 +5,6 @@ require '/mnt/c/Users/82104/workplace/Data/db_user_info.php';
  
  header('Content-Type: application/json; charset=UTF-8');
 
- //TODO: IP DB에 로그쌓기 
  $ip = $_SERVER['REMOTE_ADDR'];
  
   // 컨텐츠 타입이 JSON 인지 확인한다

@@ -5,12 +5,13 @@
 //데이터 베이스 : db_database
 require './db_user_info.php';
 
-
 header('Content-Type: application/json; charset=UTF-8');
+  
  
 // 컨텐츠 타입이 JSON 인지 확인한다
 if(!in_array('application/json',explode(';',$_SERVER['CONTENT_TYPE']))){
 echo json_encode(array('result_code' => '400'));
+
 exit;
 
 }else{
@@ -31,9 +32,21 @@ $conn = mysqli_connect($db_address, $db_userid, $db_userpw);
 mysqli_select_db($conn, $database);
 $result = $conn->query($sql);
 
-$row=mysqli_fetch_assoc($result);
+$row = mysqli_fetch_assoc($result);
 
-echo json_encode(array('result_code' => '200','result_check' => 'OK','result_data' =>$row));
+$img_path = $row['img_profile'];
+
+  // DB에서 입력받은 회원정보를 조회합니다.
+  $sql_get_img_path ="SELECT * FROM image WHERE id = $img_path ";
+  
+  mysqli_select_db($conn, $database);
+  $result_get_img_path = $conn->query($sql_get_img_path);
+  
+  $row_get_img_path = mysqli_fetch_assoc($result_get_img_path);
+  
+  // $img_path = $row['img_path'];
+    
+echo json_encode(array('result_code' => '200','result_check' => 'OK','result_data' =>$row,'result_img' =>$row_get_img_path));
 
 exit;
 
