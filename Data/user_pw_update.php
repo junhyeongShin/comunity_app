@@ -34,7 +34,7 @@ header('Content-Type: application/json; charset=UTF-8');
   $content = $postData['content'];
 
   if($column="user_pw"){
-    $column = password_hash($column,PASSWORD_DEFAULT);
+    $content = password_hash($content,PASSWORD_DEFAULT);
   }
 
   // DB에서 입력받은 회원정보를 업데이트 합니다.
@@ -45,9 +45,9 @@ header('Content-Type: application/json; charset=UTF-8');
   mysqli_select_db($conn, $database);
   $result = $conn->query($sql);
 
-  // echo "<br>";
-  // echo $sql;
-  // echo "<br>";
+  echo "<br>";
+  echo $sql;
+  echo "<br>";
   
   echo json_encode(array('result_code' => '200','result_check' => 'OK','result_data' =>$result));
   }

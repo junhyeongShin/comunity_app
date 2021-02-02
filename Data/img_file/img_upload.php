@@ -43,7 +43,7 @@ if (isset($_FILES['image']['name'])) {
 
                         
         // 업로드 성공시
-        echo json_encode(array('result_code'=>'200', 'result_check'=>'OK', 'result_index'=>$row_img_index ));
+        echo json_encode(array('result_code'=>'200', 'result_check'=>'OK', 'result_index'=>$row_img_index,'img_name'=>$_FILES['image']['name'] ));
 
 
     } catch (Exception $e) {
