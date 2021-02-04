@@ -102,8 +102,8 @@ require dirname(__FILE__,2).'/db_user_info.php';
   if($_GET['request_list']==='views'){
   
   // DB에서 입력받은 회원정보를 조회합니다.
-  $query_board_list ="SELECT board.id, title, content, writer, views, board.create_time, category, user.email, user.username, user.img_profile, user.intro_profile
-  from board join user on `writer` WHERE writer = user.index AND  category = '".$_GET['category']."' ORDER BY views DESC ";
+  $query_board_list ="SELECT board.id, title, content, writer, views, board.create_time, category, user.email
+  from board join user on `writer` WHERE writer = `index` AND  category = '".$_GET['category']."' ORDER BY views DESC ";
   
   
   }else if($_GET['request_list']==='favorites'){
@@ -138,8 +138,8 @@ require dirname(__FILE__,2).'/db_user_info.php';
   }else{
 
   // DB에서 입력받은 회원정보를 조회합니다.
-  $query_board_list ="SELECT board.id, title, content, writer, views, board.create_time, category, user.email, user.username, user.img_profile, user.intro_profile
-  from board join user on `writer` WHERE writer = user.index AND  category = '".$_GET['category']."'";
+  $query_board_list ="SELECT board.id, title, content, writer, views, board.create_time, category, user.email
+  from board join user on `writer` WHERE writer = `index` AND  category = '".$_GET['category']."'";
 
   }
 
@@ -152,8 +152,6 @@ require dirname(__FILE__,2).'/db_user_info.php';
 
     $resultArray = array();
 
-    // echo $query_board_list;
-
     while($row = mysqli_fetch_assoc($result)){
       array_push($resultArray,
       array(
@@ -162,9 +160,6 @@ require dirname(__FILE__,2).'/db_user_info.php';
        'email' => $row['email'],
        'title' => $row['title'],
        'content' => $row['content'],
-       'username' => $row['username'],
-       'img_profile' => $row['img_profile'],
-       'intro_profile' => $row['intro_profile'],
        'create_time' => $row['create_time'],
        'views' => $row['views'],
        'category' => $row['category']));
