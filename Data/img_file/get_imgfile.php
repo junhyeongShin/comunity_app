@@ -24,6 +24,6 @@ $row = mysqli_fetch_assoc($result);
 
 $img_path = $row['img_path'];
 
-echo $img_path;
+echo json_encode($img_path);
 
 ?>

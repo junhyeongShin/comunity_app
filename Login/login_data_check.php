@@ -28,7 +28,7 @@ require dirname(__FILE__,2).'/Data/db_user_info.php';
   $password_check = 'NO' ;
   
   // DB에서 입력받은 회원정보를 조회합니다.
-  $query_user_check = " SELECT email, user_pw from user where email = '$user_id'";
+  $query_user_check = " SELECT * from user where email = '$user_id'";
   
   //db에 쿼리문 대입
   
@@ -55,7 +55,7 @@ require dirname(__FILE__,2).'/Data/db_user_info.php';
     // echo 'success';
     // header('localhost/home/index.html');
 
-    echo json_encode(array('result_code' => '200','result_check' => 'OK'));
+    echo json_encode(array('result_code' => '200','result_check' => 'OK','result_data'=>$row));
 
   
     }else if(mysqli_num_rows($result)==0){
