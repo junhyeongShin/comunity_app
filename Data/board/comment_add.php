@@ -18,8 +18,8 @@ require dirname(__FILE__,2).'/db_user_info.php';
   // DB에서 입력받은 회원정보를 조회합니다.
   $query_comment_add ="INSERT INTO comment (user_id,board_id,content,create_time)
   VALUES(
-  '".$user_id."',
-  '".$board_id."',
+  $user_id,
+  $board_id,
   '".$content."',
   now())";
 
@@ -31,10 +31,10 @@ require dirname(__FILE__,2).'/db_user_info.php';
   $result = $conn->query($query_comment_add);
   
   if($result){
-    echo 'OK';
+    echo $result;
     exit;
   }else{
-    echo 'NO';
+    echo $query_comment_add;
     exit;
   }
 

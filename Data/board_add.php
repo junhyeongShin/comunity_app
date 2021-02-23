@@ -1,7 +1,9 @@
 <?php
 
 //DB의 정보를 가져옵니다. 
-require '/mnt/c/Users/82104/workplace/Data/db_user_info.php';
+// require '/mnt/c/Users/82104/workplace/Data/db_user_info.php';
+require dirname(__FILE__).'/db_user_info.php';
+
  
  header('Content-Type: application/json; charset=utf-8');
  

@@ -8,8 +8,10 @@ require dirname(__FILE__,2).'/db_user_info.php';
  $board_id = $_GET['board_id'];
 
   // DB에서 입력받은 회원정보를 조회합니다.
-  $query_comment_list ="SELECT *,user.img_profile FROM comment join user on user_id = user.`index` WHERE board_id = $board_id ";
+  $query_comment_list ="SELECT * FROM comment  join user on user_id = user.index WHERE board_id = $board_id ";
+  // $query_comment_list ="SELECT * FROM comment  ";
 
+  // echo $query_comment_list;
   //db에 쿼리문 대입
   
   //DB에 연결합니다.
@@ -18,12 +20,9 @@ require dirname(__FILE__,2).'/db_user_info.php';
   $result = $conn->query($query_comment_list);
 
 
-  $row = mysqli_fetch_assoc($result);
-
   // //DB에서 img_path를 받아 옵니다
   // $query_img_path ="SELECT img_path FROM image WHERE id = ".$row['id']." ";
   // $result_img = $conn->query($query_img_path);
-
 
   $resultArray = array();
 

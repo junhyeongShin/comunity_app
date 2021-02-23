@@ -28,7 +28,7 @@ require dirname(__FILE__,2).'/db_user_info.php';
     echo 'OK';
     exit;
   }else{
-    echo 'NO';
+    echo $query_comment_edit;
     exit;
   }
 

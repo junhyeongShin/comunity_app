@@ -8,7 +8,7 @@ require dirname(__FILE__,2).'/db_user_info.php';
  $comment_id = $_GET['comment_id'];
 
   // DB에서 입력받은 회원정보를 조회합니다.
-  $query_comment_list ="SELECT *,user.img_profile FROM re_comment join user on user_id = user.`index` WHERE comment_id = $comment_id ";
+  $query_comment_list ="SELECT * FROM re_comment join user on user_id = user.index WHERE comment_id = $comment_id ORDER BY id";
 
   //db에 쿼리문 대입
   

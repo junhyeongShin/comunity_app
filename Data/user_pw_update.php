@@ -45,9 +45,9 @@ header('Content-Type: application/json; charset=UTF-8');
   mysqli_select_db($conn, $database);
   $result = $conn->query($sql);
 
-  echo "<br>";
-  echo $sql;
-  echo "<br>";
+  // echo "<br>";
+  // echo $sql;
+  // echo "<br>";
   
   echo json_encode(array('result_code' => '200','result_check' => 'OK','result_data' =>$result));
   }

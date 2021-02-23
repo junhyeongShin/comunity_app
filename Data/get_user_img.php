@@ -25,7 +25,8 @@ header('Content-Type: application/json; charset=UTF-8');
   $user_id = $postData['user_id'];
   
   // DB에서 입력받은 회원정보를 조회합니다.
-  $sql ="SELECT * FROM user WHERE index = $user_id";
+  $sql ="SELECT * FROM user WHERE user.index = $user_id";
+
   
   //DB에 연결합니다.
   $conn = mysqli_connect($db_address, $db_userid, $db_userpw);
@@ -36,12 +37,13 @@ header('Content-Type: application/json; charset=UTF-8');
   
   $img_path = $row['img_profile'];
 
+  $row_get_img_path = array();
+
     if($img_path==0){
-      $row_get_img_path = array();
-      array_push($row_get_img_path,'img_path'=>'basic_img.png');
+      array_push($row_get_img_path,array('img_path'=>'basic_img.png'));
 
     // echo json_encode(array('result_code' => '200','result_check' => 'NO','result_data' =>$row,'result_img' =>$row_get_img_path));
-    echo json_encode(array('result_code' => '200','result_check' => 'NO','result_data' =>$row,'result_img' =>''));
+    echo json_encode(array('result_code' => '200','result_check' => 'NO','result_img' =>$row_get_img_path));
 
     exit;
 
