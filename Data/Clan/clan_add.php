@@ -11,24 +11,38 @@ require dirname(__FILE__,2).'/db_user_info.php';
 
   // $postData = json_decode($__rawBody, true);
 
-  $id = $_POST['id'];
-  $content = $_POST['content'];
+  $master = $_POST['user_id'];
+  $clan_name = $_POST['clan_name'];
+  $clan_intro = $_POST['clan_intro'];
+  $clan_img = $_POST['clan_img'];
+
+  // $master = $_GET['user_id'];
+  // $clan_name = $_GET['clan_name'];
+  // $clan_intro = $_GET['clan_intro'];
+  // $clan_img = $_GET['clan_img'];
+
 
   // DB에서 입력받은 회원정보를 조회합니다.
-  $query_comment_edit ="UPDATE re_comment SET content = '".$content."' WHERE id = $id ";
+  $query_clan_add ="INSERT INTO Clan (master,title,clan_introduce,clan_img,create_time)
+  VALUES(
+  $master,
+  '".$clan_name."',
+  '".$clan_intro."',
+  $clan_img,
+  now())";
 
   //db에 쿼리문 대입
   
   //DB에 연결합니다.
   $conn = mysqli_connect($db_address, $db_userid, $db_userpw);
   mysqli_select_db($conn, $database);
-  $result = $conn->query($query_comment_edit);
+  $result = $conn->query($query_clan_add);
   
   if($result){
-    echo 'OK';
+    echo $result;
     exit;
   }else{
-    echo $query_comment_edit;
+    echo $query_clan_add;
     exit;
   }
 

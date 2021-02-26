@@ -6,7 +6,7 @@ require dirname(__FILE__).'/db_user_info.php';
  header('Content-Type: application/json; charset=UTF-8');
 
   // DB에서 입력받은 회원정보를 조회합니다.
-  $query_comment_list ="SELECT * FROM user  join image on img_profile = image.id ";
+  $query_comment_list ="SELECT * FROM clan  join image on img_profile = image.id ";
   // $query_comment_list ="SELECT * FROM comment  ";
 
   // echo $query_comment_list;
@@ -33,9 +33,10 @@ require dirname(__FILE__).'/db_user_info.php';
     array_push($resultArray,
     array(
      'id' => $row['index'],
-     'username' => $row['username'],
+     'username' => $row['title'],
      'img_path' => $row['img_path'],
      'intro_profile' => $row['intro_profile'],
+     'master' => $row['master'],
     ));
 }
 
