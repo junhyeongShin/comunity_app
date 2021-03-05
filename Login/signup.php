@@ -31,7 +31,6 @@ require '/mnt/c/Users/82104/workplace/Data/db_user_info.php';
   $encrypted_passwd = password_hash($user_passwd, PASSWORD_DEFAULT);
   
   
-  // DB에서 입력받은 회원정보를 조회합니다.
   $query_signup_check ="INSERT INTO user (email,user_pw,username,create_time)
   VALUES(
   '".$user_id."',
