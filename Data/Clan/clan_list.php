@@ -1,12 +1,12 @@
 <?php
 
 //DB의 정보를 가져옵니다. 
-require dirname(__FILE__).'/db_user_info.php';
+require dirname(__FILE__,2).'/db_user_info.php';
  
  header('Content-Type: application/json; charset=UTF-8');
 
   // DB에서 입력받은 회원정보를 조회합니다.
-  $query_comment_list ="SELECT * FROM clan  join image on img_profile = image.id ";
+  $query_comment_list ="SELECT Clan.id,title,img_path,clan_introduce,master,Clan.member_count,category FROM Clan  join image on clan_img = image.id";
   // $query_comment_list ="SELECT * FROM comment  ";
 
   // echo $query_comment_list;
@@ -32,11 +32,13 @@ require dirname(__FILE__).'/db_user_info.php';
 
     array_push($resultArray,
     array(
-     'id' => $row['index'],
-     'username' => $row['title'],
+     'id' => $row['id'],
+     'title' => $row['title'],
      'img_path' => $row['img_path'],
-     'intro_profile' => $row['intro_profile'],
-     'master' => $row['master'],
+     'category' => $row['category'],
+     'clan_introduce' => $row['clan_introduce'],
+     'member_count' => $row['member_count'],
+     'master' => $row['master']
     ));
 }
 
