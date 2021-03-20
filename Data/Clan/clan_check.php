@@ -4,6 +4,8 @@
 //비밀번호 : db_userpw
 //데이터 베이스 : db_database
 require dirname(__FILE__,2).'/db_user_info.php';
+require dirname(__FILE__,2).'/DB/db_class.php';
+
 
 header('Content-Type: application/json; charset=UTF-8');
 
@@ -11,20 +13,20 @@ $user_id = $_GET['id'];
 // $user_id = $_POST['user_id'];
 // $clan_id = $_POST['clan_id'];
 
-$query_get_clan ="SELECT clan FROM user WHERE user.index = $user_id ";
+$db = new MysqliDb (Array (
+ 'host' => $db_address,
+ 'username' => $db_userid, 
+ 'password' => $db_userpw,
+ 'db'=> $database,
+ 'port' => 3306,
+ 'charset' => 'utf8'));
 
-  //DB에 연결합니다.
-  $conn = mysqli_connect($db_address, $db_userid, $db_userpw);
-  mysqli_select_db($conn, $database);
-  $result = $conn->query($query_get_clan);
+ $db->where ("user_id", $user_id);
+ $count = $db->getValue ("clan_member", "count(*)");
 
-  $row_get_clan = mysqli_fetch_assoc($result);
-   
-  if(strlen($row_get_clan['clan'])!=0){
-    echo 'true';
-  }else{
-    echo 'false';
-  }
-
+  if($count>0)
+  echo 'true';
+  else
+  echo 'false';
 
 ?>

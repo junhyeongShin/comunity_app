@@ -6,14 +6,18 @@
 
  header('Content-Type: application/json; charset=UTF-8');
  
-  
   // $__rawBody = file_get_contents("php://input"); // 본문을 불러옴
   // // $__getData = array(json_decode($__rawBody)); // 데이터를 변수에 넣고
 
   // $postData = json_decode($__rawBody, true);
 
-  $user_id = $_POST['user_id'];
-  $clan_id = $_POST['clan_id'];
+  $from = $_POST['from'];
+  $to = $_POST['to'];
+  $content = $_POST['content'];
+  $time = $_POST['time'];
+  $from_id = $_POST['from_id'];
+  $to_id = $_POST['to_id'];
+  $type = $_POST['type'];
 
   // $user_id = $_GET['user_id'];
   // $clan_id = $_GET['clan_id'];
@@ -26,29 +30,22 @@
    'port' => 3306,
    'charset' => 'utf8'));
 
-   $db->where('clan_id', $clan_id);
-   $db->where('user_id', $user_id);
-
-   $count = $db->getValue ("clan_join_list", "count(*)");
-
-   $db = MysqliDb::getInstance();
-
-   if( $count===0){
-    $data = Array ("user_id" => $user_id,
-                    "clan_id" =>$clan_id,
+    $data = Array ("from" => $from,
+                    "to" =>$to,
+                    "content" =>$content,
+                    "time" =>$time,
+                    "from_id" =>$from_id,
+                    "to_id" =>$to_id,
+                    "type" =>$type,
                      );
 
-      $id = $db->insert ('clan_join_list', $data);
+      $id = $db->insert ('chat_message', $data);
 
       if($id)
       echo 'success';
       else{
       echo 'insert failed: ' . $db->getLastError();
       }
-
-   }else{
-    echo 'already success';
-   }
 
 
 ?>
