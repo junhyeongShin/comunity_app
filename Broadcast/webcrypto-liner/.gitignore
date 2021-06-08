@@ -1,0 +1,14 @@
+# Mac
+.DS_Store
+
+/.vscode
+
+.nyc_output/
+coverage/
+
+/build
+/typings
+/node_modules
+index.js
+*.log
+/test/tests.js
