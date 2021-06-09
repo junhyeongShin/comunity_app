@@ -1,15 +1,26 @@
 <?
-$config = MuxPhp\Configuration::getDefaultConfiguration()
-->setUsername(getenv('MUX_TOKEN_ID'))
-->setPassword(getenv('MUX_TOKEN_SECRET'));
+//Creating Sessions
+use OpenTok\MediaMode;
+use OpenTok\ArchiveMode;
 
-$liveApi = new MuxPhp\Api\LiveStreamsApi(
-  new GuzzleHttp\Client(),
-  $config
+// Create a session that attempts to use peer-to-peer streaming:
+$session = $opentok->createSession();
+
+// A session that uses the OpenTok Media Router, which is required for archiving:
+$session = $opentok->createSession(array( 'mediaMode' => MediaMode::ROUTED ));
+
+// A session with a location hint:
+$session = $opentok->createSession(array( 'location' => '12.34.56.78' ));
+
+// An automatically archived session:
+$sessionOptions = array(
+    'archiveMode' => ArchiveMode::ALWAYS,
+    'mediaMode' => MediaMode::ROUTED
 );
+$session = $opentok->createSession($sessionOptions);
 
-$createAssetRequest = new MuxPhp\Models\CreateAssetRequest(["playback_policy" => [MuxPhp\Models\PlaybackPolicy::PUBLIC_PLAYBACK_POLICY]]);
-$createLiveStreamRequest = new MuxPhp\Models\CreateLiveStreamRequest(["playback_policy" => [MuxPhp\Models\PlaybackPolicy::PUBLIC_PLAYBACK_POLICY], "new_asset_settings" => $createAssetRequest]);
-$stream = $liveApi->createLiveStream($createLiveStreamRequest);
+
+// Store this sessionId in the database for later use
+$sessionId = $session->getSessionId();
 
 ?>
