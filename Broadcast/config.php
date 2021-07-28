@@ -1,9 +1,16 @@
 <?php
 
-$SCRIPT_ADDRESS = 'http://192.168.56.1/requirejs/';
-$SERVER_ADDRESS = 'http://192.168.56.1/Broadcast/';
+$SCRIPT_ADDRESS = 'http://localhost/requirejs/';
+$SERVER_ADDRESS = 'http://localhost/Broadcast/';
+$SERVER_ADDRESS_DB = 'http://localhost/Data/';
+$SERVER_ADDRESS_PORT = 'http://localhost:3000/';
+// $SCRIPT_ADDRESS = 'https://us-broadcast.p-e.kr/requirejs/';
+// $SERVER_ADDRESS = 'https://us-broadcast.p-e.kr/Broadcast/';
+// $SERVER_ADDRESS_DB = 'https://us-broadcast.p-e.kr/Data/';
+// $SERVER_ADDRESS_PORT = 'https://3.36.182.81:3000/';
+// $SERVER_ADDRESS_PORT = 'https://localhost:3000/';
 
-// Vonage
+// Vonage n   
 $apikey = '47249064';
 $api_secret = 'cd6888b84b59f07b6222263844373e67d051c1ea';
 

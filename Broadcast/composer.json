@@ -1,0 +1,5 @@
+{
+	    "require": {
+		            "remiheens/php-wowza-securetoken" : "0.1.*"
+			        }
+}

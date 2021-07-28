@@ -8,7 +8,10 @@ require dirname(__FILE__,2).'/db_user_info.php';
  $comment_id = $_GET['comment_id'];
 
   // DB에서 입력받은 회원정보를 조회합니다.
-  $query_comment_list ="SELECT * FROM re_comment join user on user_id = user.index WHERE comment_id = $comment_id ORDER BY id";
+  $query_comment_list ="SELECT content,user_id,username,img_path,comment_id,re_comment.id FROM re_comment 
+  join user u on user_id = u.index 
+  left join image i on i.id = u.img_profile
+  WHERE comment_id = $comment_id ORDER BY re_comment.id";
 
   //db에 쿼리문 대입
   
@@ -29,6 +32,7 @@ require dirname(__FILE__,2).'/db_user_info.php';
      'id' => $row['id'],
      'content' => $row['content'],
      'comment_id' => $row['comment_id'],
+     'img_path' => $row['img_path'],
      'user_id' => $row['user_id'],
      'username' => $row['username']));
 }

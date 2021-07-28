@@ -1,0 +1,45 @@
+[
+    {
+        "name": "remiheens/php-wowza-securetoken",
+        "version": "0.1.2",
+        "version_normalized": "0.1.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/remiheens/WowzaSecureToken.git",
+            "reference": "618183be8cdb752fe380ffc04f94c7cce292802f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/remiheens/WowzaSecureToken/zipball/618183be8cdb752fe380ffc04f94c7cce292802f",
+            "reference": "618183be8cdb752fe380ffc04f94c7cce292802f",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2.0"
+        },
+        "time": "2018-04-04T17:31:42+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "remiheens\\WowzaSecureToken\\": "src\\remiheens\\WowzaSecureToken\\"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Remi Heens",
+                "email": "remi@tuto.com"
+            }
+        ],
+        "description": "PHP library for Wowza SecureToken module",
+        "keywords": [
+            "php",
+            "securetoken",
+            "wowza"
+        ]
+    }
+]

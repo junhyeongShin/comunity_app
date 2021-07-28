@@ -1,0 +1,60 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "7421e041f15e0aa6f8140d6b2a9fc3d8",
+    "packages": [
+        {
+            "name": "remiheens/php-wowza-securetoken",
+            "version": "0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/remiheens/WowzaSecureToken.git",
+                "reference": "618183be8cdb752fe380ffc04f94c7cce292802f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/remiheens/WowzaSecureToken/zipball/618183be8cdb752fe380ffc04f94c7cce292802f",
+                "reference": "618183be8cdb752fe380ffc04f94c7cce292802f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "remiheens\\WowzaSecureToken\\": "src\\remiheens\\WowzaSecureToken\\"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Remi Heens",
+                    "email": "remi@tuto.com"
+                }
+            ],
+            "description": "PHP library for Wowza SecureToken module",
+            "keywords": [
+                "php",
+                "securetoken",
+                "wowza"
+            ],
+            "time": "2018-04-04T17:31:42+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
+}

@@ -96,51 +96,20 @@ require dirname(__FILE__,2).'/db_user_info.php';
  header('Content-Type: application/json; charset=utf-8');
 
 //  echo var_dump($_GET); 
-
-  $category = $_GET['category'];
-
-  if($_GET['request_list']==='views'){
   
-  // DB에서 입력받은 회원정보를 조회합니다.
-  $query_board_list ="SELECT board.id, title, content, writer, views, board.create_time, category, user.email, user.username, user.img_profile, user.intro_profile
-  from board join user on `writer` WHERE writer = user.index AND  category = '".$_GET['category']."' ORDER BY views DESC ";
-  
-  
-  }else if($_GET['request_list']==='favorites'){
 
-  $query_user_favorites = "SELECT favorites WHERE id = ".$_GET['user_id']." FROM user ";
-
-    //DB에 연결합니다.
-    $conn = mysqli_connect($db_address, $db_userid, $db_userpw);
-    mysqli_select_db($conn, $database);
-    $result = $conn->query($query_user_favorites);
-
-    //DB 에서 어레이로 저장되어있던 자료 파싱
-    $count = explode(',',$result['favorites']);
-
-    $array_result = array();
-
-    if(is_array($count)){
-      foreach($count as $key){
-        $query_board_list ="SELECT board.*, user.email FROM board WHERE category = '".$_GET['category']."' LEFT JOIN user ON user.id = board.writer AND id = ".$key." ";
-        $result_favorites = $conn->query($query_board_list);
-        $row_result=mysqli_fetch_assoc($result_favorites);
-
-        array_push($array_result,$row_result);
-      }
-      echo json_encode(array('result_code' => '200','result_check' => 'OK','result_list'=>$array_result));
-    }else if(isset($count)){
-      echo json_encode(array('result_code' => '200','result_check' => 'NO $count is empty.'));
-    }
-
-  exit;
+  if(isset($_GET['category'])){
+    // DB에서 입력받은 회원정보를 조회합니다.
+    $query_board_list ="SELECT board.id, title, content, writer, views, board.create_time, category, u.email, u.username, u.img_profile, u.intro_profile, i.img_path
+    from board join user u on `writer` 
+    left join image i on i.id = u.img_profile
+    WHERE writer = u.index AND  category = '".$_GET['category']."' ORDER BY id DESC ";
 
   }else{
-
-  // DB에서 입력받은 회원정보를 조회합니다.
-  $query_board_list ="SELECT board.id, title, content, writer, views, board.create_time, category, user.email, user.username, user.img_profile, user.intro_profile
-  from board join user on `writer` WHERE writer = user.index AND  category = '".$_GET['category']."'";
-
+    $query_board_list ="SELECT board.id, title, content, writer, views, board.create_time, category, u.email, u.username, u.img_profile, u.intro_profile, i.img_path
+    from board join user u on `writer` 
+    left join image i on i.id = u.img_profile
+    WHERE writer = u.index ORDER BY id DESC ";
   }
 
     //DB에 연결합니다.
@@ -164,11 +133,12 @@ require dirname(__FILE__,2).'/db_user_info.php';
        'content' => $row['content'],
        'username' => $row['username'],
        'img_profile' => $row['img_profile'],
+       'img_url' => $row['img_path'],
        'intro_profile' => $row['intro_profile'],
        'create_time' => $row['create_time'],
        'views' => $row['views'],
        'category' => $row['category']));
- }
+    }
     
     if($result){
       echo json_encode($resultArray);

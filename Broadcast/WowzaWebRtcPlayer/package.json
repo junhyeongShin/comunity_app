@@ -1,0 +1,25 @@
+{
+  "name": "wowzartcplayerjs",
+  "version": "1.0.3",
+  "description": "Wowza RTC Player",
+  "main": "index.js",
+  "unpkg": "dist/WowzaWebRtcPlayer.browser.js",
+  "files": [
+    "src",
+    "dist/*.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup --config"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "rollup": "^2.18.0"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danroot/WowzaWebRtcPlayer.git"
+  }
+}

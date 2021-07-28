@@ -17,10 +17,9 @@ require dirname(__FILE__,2).'/Data/db_user_info.php';
   $result = $conn->query($query_user_check);
   $row=mysqli_fetch_assoc($result);  
 
+  $hash_ = password_hash('1111', PASSWORD_BCRYPT);
 
-  $hash = password_hash('1111', PASSWORD_BCRYPT);
-
-  if(password_verify($user_passwd,$hash)){
+  if(password_verify('1111',$hash_)){
     $password_check = 'OK';
     echo 'password_check = OK';
   }
@@ -35,6 +34,7 @@ require dirname(__FILE__,2).'/Data/db_user_info.php';
     session_start();
     $_SESSION['userid'] = $user_id;
     $_SESSION['user_img'] = $row['img_path'];
+    $_SESSION['user_index'] = $row['index'];
 
     // echo 'success';
     // header('localhost/home/index.html');

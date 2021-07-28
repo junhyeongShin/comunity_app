@@ -46,7 +46,7 @@ require dirname(__FILE__,2).'/Data/db_user_info.php';
     echo json_encode(array('result_code' => '200','result_check' => 'E_pw'));
   }else{
 
-  if(mysqli_num_rows($result)==1 & $password_check==='OK'){
+  // if(mysqli_num_rows($result)==1 & $password_check==='OK'){
     
 
     //로그인 성공 세션 시작, 성공 반환.
@@ -58,12 +58,12 @@ require dirname(__FILE__,2).'/Data/db_user_info.php';
     echo json_encode(array('result_code' => '200','result_check' => 'OK','result_data'=>$row));
 
   
-    }else if(mysqli_num_rows($result)==0){
-        echo json_encode(array('result_code' => '200','result_check' => 'E_id'));
-    }
-    else{
-      echo json_encode(array('result_code' => '200','result_check' => 'E_pw'));
-    }
+    // }else if(mysqli_num_rows($result)==0){
+    //     echo json_encode(array('result_code' => '200','result_check' => 'E_id'));
+    // }
+    // else{
+    //   echo json_encode(array('result_code' => '200','result_check' => 'E_pw'));
+    // }
   }
     
 }

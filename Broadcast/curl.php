@@ -1,5 +1,6 @@
 <?php
 include 'config.php';
+require_once '/vendor/autoload.php';
 
 $data = array("live_stream"=>array("aspect_ratio_height" =>1080,
               "aspect_ratio_width"=> 1280,

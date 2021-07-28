@@ -1,0 +1,109 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+.bg-popOutPg{position: absolute;
+    background-color: rgba(0, 0, 0, 0.85);
+    width: 100%;
+    height: 100%;
+    z-index: 95;
+}
+
+.popOutPg {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 100;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    border-radius: 20px;
+    height: 55%;
+    background: #fff;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    transition: 1s;
+}
+
+.popOutPg .leftBox {
+    height: 100%;
+    width: 45%;
+    background: #fff;
+    border-radius: 20px 0 0 20px;
+       overflow: auto;
+    /* padding: 100px 140px 0 20px; */
+}
+
+.popOutPg .rightBox {
+    height: 100%;
+    width: 55%;
+    background: url('Asset 21@4x.png') no-repeat;
+    background-size: 100% 100%;
+    /*background-position: center center;*/
+    border-radius: 0 20px 20px 0;
+    position: relative;
+
+}
+
+.popOutPg .leftBox .lbTextBox {
+    padding: 10px;
+       overflow: auto;
+}
+
+.popOutPg .leftBox .lbTextBox .lbtbHead {
+    color: #000;
+    font-weight: 600;
+    font-size: 36px;
+    /*margin-right: 40px;*/
+    letter-spacing: 0.5px;
+    font-family: Arial, Helvetica;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+
+.popOutPg .leftBox .lbTextBox .lbtbLink {
+    margin-bottom: 20px;
+    display: flex;
+    width: 50px;
+    justify-content: space-between;
+}
+
+.popOutPg .leftBox .lbTextBox .lbtbSec {
+    color: grey;
+    font-weight: 500;
+    color: #424141;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 30px;
+    overflow: auto;
+}
+
+.popOutPg .leftBox .lbTextBox .lbtbBtn {
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 10px;
+    background: #D90428;
+    width: 200px;
+    text-align: center;
+    border-radius: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 16px;
+    cursor: pointer;
+}
+
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+.icon-price-tags {
+  width: 1.5em;
+}

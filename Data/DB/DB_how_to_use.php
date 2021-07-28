@@ -9,6 +9,9 @@ require dirname(__FILE__).'/db_class.php';
 
 //  https://github.com/ThingEngineer/PHP-MySQLi-Database-Class#insert-query
 
+// $db->orderBy("login","Desc");
+// $db->orderBy("id","asc");
+// $db->orderBy("RAND ()");
 
   // DB 클래스 생성
   // 1 정규식

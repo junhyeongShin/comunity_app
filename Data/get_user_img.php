@@ -40,10 +40,11 @@ header('Content-Type: application/json; charset=UTF-8');
   $row_get_img_path = array();
 
     if($img_path==0){
-      array_push($row_get_img_path,array('img_path'=>'basic_img.png'));
+      $basic = '{"id":"0","img_path":"basic_img.png"}';
+      // array_push($row_get_img_path,'img_path'=>'basic_img.png');
 
     // echo json_encode(array('result_code' => '200','result_check' => 'NO','result_data' =>$row,'result_img' =>$row_get_img_path));
-    echo json_encode(array('result_code' => '200','result_check' => 'NO','result_img' =>$row_get_img_path));
+    echo json_encode(array('result_code' => '200','result_check' => 'NO','result_img' =>$basic));
 
     exit;
 

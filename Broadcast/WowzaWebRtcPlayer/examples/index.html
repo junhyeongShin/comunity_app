@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+    <video id="player" autoplay playsinline muted controls>
+    </video>
+    <script type="text/javascript" src="https://webrtchacks.github.io/adapter/adapter-latest.js"></script>
+    <script type="text/javascript" src="../dist/wowzawebrtcplayer.browser.js"></script>
+    <script>      
+        (function () {
+            var player = new WowzaRtc.WowzaWebRtcPlayer('player');
+            player.start('wss://c97728.entrypoint.cloud.wowza.com/webrtc-session.json','app-6H56cr15','T294aWI2');
+        })();
+    </script>
+</body>
+
+</html>
